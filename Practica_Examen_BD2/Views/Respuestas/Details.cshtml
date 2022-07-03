@@ -1,0 +1,42 @@
+﻿@model Practica_Examen_BD2.Respuestas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Respuestas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Alumnos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alumnos.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preguntas.Sentencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preguntas.Sentencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RespuestaAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RespuestaAlumno)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRespuesta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

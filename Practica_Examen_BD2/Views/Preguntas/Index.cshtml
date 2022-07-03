@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Practica_Examen_BD2.Preguntas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="row col-md-12 col-sm-12 col-lg-12">
+        <div class="ms-auto  me-5 col-md-3 align-content-center">
+            @Html.ActionLink("Agregar pregunta", "Create")
+
+        </div>
+        <div class="mx-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Alumnos/Create">Agregar alumno</a>
+        </div>
+        <div class="me-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Respuestas/Index">Iniciar examen</a>
+        </div>
+    </div>
+
+</div>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sentencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respuesta1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respuesta2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respuesta3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respuesta4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RespuestaCorrecta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sentencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respuesta1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respuesta2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respuesta3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respuesta4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RespuestaCorrecta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPregunta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPregunta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPregunta })
+        </td>
+    </tr>
+}
+
+</table>

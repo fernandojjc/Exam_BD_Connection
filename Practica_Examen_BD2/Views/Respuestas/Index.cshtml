@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Practica_Examen_BD2.Preguntas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row my-4">
+    <div class="row col-md-12 col-sm-12 col-lg-12">
+        <div class="ms-auto  me-5 col-md-3 align-content-center">
+            <a class="mx-auto" href="/Preguntas/Index">Agregar alumno</a>
+        </div>
+        <div class="mx-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Preguntas/Index">Agregar pregunta</a>
+        </div>
+        <div class="me-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Respuestas/MostrarLista">Consultar calificacion</a>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <form class="form" action="/Respuestas/Index" method="post">
+        <div class="row col-md-12">
+            <div class="col-md-4 align-content-center">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre" />
+            </div>
+            <div class="col-md-4 align-content-center">
+                <label for="apellidoPaterno">Apellido paterno:</label>
+                <input type="text" class="form-control" name="apellidoPaterno" placeholder="Ingrese el apellido paterno" />
+            </div>
+
+            <div class="mt-2 col-md-12">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+
+    @if (ViewBag.datos != null)
+    {
+        if (ViewBag.calificacion == -1)
+        {
+            foreach (var dato in ViewBag.datos)
+            {
+                <p>@dato.Nombre @dato.ApellidoPaterno @dato.ApellidoMaterno ,  Edad: @ViewBag.edad años, Grupo: @dato.Grupo</p>
+
+            }
+        }
+        else 
+        { 
+        
+            <p>El alumno ya relizó su examen</p>
+        }
+
+
+
+
+    }
+    else
+    {
+
+        <p>Alumno no encontrado</p>
+    }
+</div>
+
+
+<form class="form" method="post" action="/Respuestas/Create">
+    @if (ViewBag.datos != null)
+    {
+        if (ViewBag.calificacion == -1)
+        {
+            foreach (var dato in ViewBag.datos)
+            {
+            <input type="text" name="IdAlumno" value="@dato.IdAlumno" style="display:none;" />
+            }
+            foreach (var item in Model)
+            {
+
+            <h1>@item.Sentencia</h1><br />
+            <p>1. @item.Respuesta1</p><br />
+            <p>2. @item.Respuesta2</p><br />
+            <p>3. @item.Respuesta3</p><br />
+            <p>4. @item.Respuesta4</p><br />
+            <input style="display:none;" type="text" name="IdPregunta[]" value="@item.IdPregunta" /><br />
+
+
+            <input class="form-control mb-4" type="number" name="Respuesta[]" min="1" max="4" required />
+
+            }
+        <button type="submit" class="btn btn-primary">Terminar</button>
+        }
+    }
+</form>
+
+
+

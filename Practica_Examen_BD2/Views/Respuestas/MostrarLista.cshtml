@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Practica_Examen_BD2.Alumnos>
+
+@{
+    ViewBag.Title = "MostrarLista";
+}
+
+<h2>MostrarLista</h2>
+<div class="row my-4">
+    <div class="row col-md-12 col-sm-12 col-lg-12">
+        <div class="ms-auto  me-5 col-md-3 align-content-center">
+            <a class="mx-auto" href="/Alumnos/Create">Agregar alumno</a>
+        </div>
+        <div class="mx-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Preguntas/Index">Agregar pregunta</a>
+        </div>
+        <div class="me-auto  col-md-3 align-content-center">
+            <a class="mx-auto" href="/Respuestas/Index">Iniciar otro examen</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+<form class="form col-md-2 mx-auto" action="/Respuestas/MostrarLista" method="post">
+    <select class="my-3 form-select" name="grupo">
+        @if(ViewBag.grupos != null)
+            {
+                foreach(var k in ViewBag.grupos)
+                {
+                    <option value="@k">@k</option>            
+                }
+            
+            }
+        
+    </select>
+    <div class="col-md-12">
+        @if (ViewBag.grupos != null)
+        {
+            <button class="btn btn-primary" type="submit">Cargar grupo</button>
+        }
+    </div>   
+</form>
+<div class="col-md-8">
+    <table class="table ">
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido Paterno
+            </th>
+            <th>
+                Apellido Materno
+            </th>
+            <th>
+                Grupo
+            </th>
+            <th>
+                Calificacion
+            </th>
+            <th></th>
+        </tr>
+        @if (ViewBag.datos != null)
+        {
+
+
+            foreach (var item in ViewBag.datos)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.ApellidoPaterno
+                    </td>
+                    <td>
+                        @item.ApellidoMaterno
+                    </td>
+                    <td>
+                        @item.Grupo
+                    </td>
+                    <td>
+                        @item.Calificacion
+                    </td>
+
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+    </div>
